@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    @apply bg-background text-text-primary font-sans antialiased;
+  }
+  /* Respect prefers-reduced-motion (TECH_RULES + DESIGN_SYSTEM) */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Titre hero gradient animé (rouge profond → blanc chaud → rouge sombre) — composant GradientTitle */
+@keyframes hero-gradient-title {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.hero-gradient-title {
+  background: linear-gradient(
+    90deg,
+    #b11226 0%,
+    #8a0e1c 25%,
+    #e8eaef 50%,
+    #8a0e1c 75%,
+    #b11226 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: hero-gradient-title 12s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-gradient-title {
+    animation: none;
+    background-position: 50% 50%;
+  }
+}
+
+/* Hero H1 : cible SplitType — évite le décalage des caractères au split/revert */
+.hero-title-split {
+  font-kerning: none;
+}
