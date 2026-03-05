@@ -4,8 +4,8 @@ import Button from '../ui/Button'
 
 const navItems = [
   { to: '/', label: 'Accueil' },
-  { to: '/lc-forma-pro', label: 'LC Forma Pro Sécurité' },
-  { to: '/lc-sports-connexion', label: 'LC Sports Connexion' },
+  { to: '/lc-forma-pro', label: 'LC Forma Pro' },
+  { to: '/lc-sports-connexion', label: 'LC Sports' },
   { to: '/gscurit', label: 'GSCURIT' },
   { to: '/contact', label: 'Contact' },
 ]
@@ -13,7 +13,7 @@ const navItems = [
 function IconMenu() {
   return (
     <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 8h16M4 16h16" />
     </svg>
   )
 }
@@ -21,15 +21,24 @@ function IconMenu() {
 function IconClose() {
   return (
     <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
     </svg>
   )
 }
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
 
   const closeMenu = () => setIsMenuOpen(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   useEffect(() => {
     if (!isMenuOpen) return
@@ -58,24 +67,31 @@ export default function Header() {
   }, [])
 
   const navLinkClass = ({ isActive }) =>
-    `block rounded-lg px-4 py-3 text-base font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background ${
-      isActive
-        ? 'bg-white/10 text-text-primary'
-        : 'text-text-secondary hover:bg-white/5 hover:text-text-primary'
-    }`
+    `relative py-2 text-[10px] font-bold uppercase tracking-[0.25em] transition-all duration-500 hover:text-accent ${isActive ? 'text-accent' : 'text-text-secondary/80'
+    } after:absolute after:-bottom-1 after:left-1/2 after:h-[2px] after:w-0 after:-translate-x-1/2 after:bg-accent after:transition-all after:duration-500 hover:after:w-full ${isActive ? 'after:w-full shadow-[0_4px_12px_-4px_rgba(177,18,38,0.3)]' : ''}`
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-background/95 backdrop-blur-sm">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 md:px-6">
+    <header
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${isScrolled
+        ? 'py-4 bg-background/80 backdrop-blur-xl border-b border-white/5 shadow-2xl'
+        : 'py-8 bg-transparent'
+        }`}
+    >
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 md:px-12">
         <NavLink
           to="/"
-          className="font-display text-xl tracking-wide text-text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
+          className="group relative flex items-center gap-2 focus:outline-none"
         >
-          LC Forma Pro
+          <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center text-white font-display text-2xl group-hover:scale-110 transition-transform">
+            L
+          </div>
+          <span className="font-display text-2xl tracking-tighter text-text-primary uppercase group-hover:tracking-[0.1em] transition-all duration-500">
+            LC Group
+          </span>
         </NavLink>
 
         <nav
-          className="hidden flex-wrap items-center gap-1 md:flex md:gap-2"
+          className="hidden items-center gap-10 lg:flex"
           aria-label="Navigation principale"
         >
           {navItems.map(({ to, label }) => (
@@ -83,76 +99,75 @@ export default function Header() {
               key={to}
               to={to}
               end={to === '/'}
-              className={({ isActive }) =>
-                `rounded px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background ${
-                  isActive
-                    ? 'bg-white/10 text-text-primary'
-                    : 'text-text-secondary hover:bg-white/5 hover:text-text-primary'
-                }`
-              }
+              className={navLinkClass}
             >
               {label}
             </NavLink>
           ))}
         </nav>
 
-        <div className="flex shrink-0 items-center gap-2">
-          <Button variant="primary" to="/contact" className="whitespace-nowrap">
-            Demander un devis
+        <div className="flex items-center gap-4">
+          <Button variant="primary" to="/contact" className="hidden sm:inline-flex px-8 py-3 text-[10px] tracking-[0.2em] uppercase">
+            Devis Express
           </Button>
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-text-primary transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background md:hidden"
+            className="group relative flex h-12 w-12 items-center justify-center rounded-full glass hover:bg-white/10 transition-all focus:outline-none lg:hidden"
             onClick={() => setIsMenuOpen((v) => !v)}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
             aria-label={isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
           >
-            {isMenuOpen ? <IconClose /> : <IconMenu />}
+            <div className="relative w-6 h-6">
+              <span className={`absolute left-0 top-1/2 block h-0.5 w-6 -translate-y-2 bg-text-primary transition-all duration-300 ${isMenuOpen ? 'translate-y-0 rotate-45' : ''}`} />
+              <span className={`absolute left-0 top-1/2 block h-0.5 w-6 bg-text-primary transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`} />
+              <span className={`absolute left-0 top-1/2 block h-0.5 w-6 translate-y-2 bg-text-primary transition-all duration-300 ${isMenuOpen ? 'translate-y-0 -rotate-45' : ''}`} />
+            </div>
           </button>
         </div>
       </div>
 
-      {/* Overlay + drawer mobile : non-interactif quand fermé pour ne pas bloquer les clics */}
+      {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-40 md:hidden ${isMenuOpen ? '' : 'pointer-events-none'}`}
+        className={`fixed inset-0 z-[90] lg:hidden transition-all duration-500 ${isMenuOpen ? 'visible' : 'invisible'}`}
         aria-hidden={!isMenuOpen}
       >
         <div
-          className={`absolute inset-0 bg-black/60 transition-opacity duration-200 ease-out ${
-            isMenuOpen ? 'opacity-100' : 'opacity-0'
-          }`}
+          className={`absolute inset-0 bg-background/90 backdrop-blur-2xl transition-opacity duration-500 ${isMenuOpen ? 'opacity-100' : 'opacity-0'
+            }`}
           onClick={closeMenu}
         />
         <div
           id="mobile-menu"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Menu de navigation"
-          className={`fixed top-0 right-0 bottom-0 z-50 w-full max-w-sm overflow-y-auto border-l border-white/10 bg-background shadow-xl transition-transform duration-200 ease-out ${
-            isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
+          className={`relative flex h-full flex-col items-center justify-center p-12 transition-all duration-700 ease-expo ${isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`}
         >
-          <div className="flex flex-col gap-1 p-4 pt-6">
-            <Button
-              variant="primary"
-              to="/contact"
-              className="mb-2 w-full justify-center"
-              onClick={closeMenu}
-            >
-              Demander un devis
-            </Button>
-            {navItems.map(({ to, label }) => (
+          <div className="flex flex-col items-center gap-8 text-center">
+            {navItems.map(({ to, label }, i) => (
               <NavLink
                 key={to}
                 to={to}
                 end={to === '/'}
-                className={navLinkClass}
+                className={({ isActive }) =>
+                  `font-display text-4xl uppercase tracking-tighter transition-all hover:text-accent hover:scale-110 ${isActive ? 'text-accent' : 'text-text-primary'
+                  }`
+                }
+                style={{ transitionDelay: `${i * 100}ms` }}
                 onClick={closeMenu}
               >
                 {label}
               </NavLink>
             ))}
+            <div className="mt-8 pt-8 border-t border-white/10 w-full max-w-[200px]">
+              <Button
+                variant="primary"
+                to="/contact"
+                className="w-full justify-center px-8 py-5 text-xs tracking-widest uppercase"
+                onClick={closeMenu}
+              >
+                Demander un devis
+              </Button>
+            </div>
           </div>
         </div>
       </div>

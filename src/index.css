@@ -6,14 +6,30 @@
   html {
     @apply scroll-smooth;
   }
+
   body {
-    @apply bg-background text-text-primary font-sans antialiased;
+    @apply bg-background text-text-primary font-sans antialiased selection:bg-accent selection:text-white;
   }
+
+  /* Custom scrollbar - Subtle & Premium */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-white/10 rounded-full border-2 border-background hover:bg-accent/40 transition-colors;
+  }
+
   /* Respect prefers-reduced-motion (TECH_RULES + DESIGN_SYSTEM) */
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
     }
+
     *,
     *::before,
     *::after {
@@ -24,25 +40,42 @@
   }
 }
 
+@layer components {
+  .glass {
+    @apply bg-white/[0.03] backdrop-blur-xl border border-white/5;
+  }
+
+  .glass-hover {
+    @apply hover:bg-white/[0.06] hover:border-white/10 hover:shadow-2xl transition-all duration-500 ease-out;
+  }
+
+  .glass-accent {
+    @apply bg-accent/[0.02] backdrop-blur-xl border border-accent/10;
+  }
+
+  .shadow-accent-glow {
+    box-shadow: 0 0 40px -10px rgba(177, 18, 38, 0.15);
+  }
+}
+
 /* Titre hero gradient animé (rouge profond → blanc chaud → rouge sombre) — composant GradientTitle */
 @keyframes hero-gradient-title {
   0% {
     background-position: 0% 50%;
   }
+
   100% {
     background-position: 200% 50%;
   }
 }
 
 .hero-gradient-title {
-  background: linear-gradient(
-    90deg,
-    #b11226 0%,
-    #8a0e1c 25%,
-    #e8eaef 50%,
-    #8a0e1c 75%,
-    #b11226 100%
-  );
+  background: linear-gradient(90deg,
+      #b11226 0%,
+      #8a0e1c 25%,
+      #e8eaef 50%,
+      #8a0e1c 75%,
+      #b11226 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;

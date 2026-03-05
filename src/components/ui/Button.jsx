@@ -2,9 +2,11 @@ import { Link } from 'react-router-dom'
 
 const variants = {
   primary:
-    'bg-accent text-text-primary hover:bg-accent/90 focus:ring-accent active:scale-[0.98] transition-transform',
+    'bg-accent text-text-primary hover:bg-accent-hover hover:shadow-accent-glow focus:ring-accent active:scale-[0.98] transition-all duration-300',
   secondary:
-    'border border-white/20 bg-transparent text-text-primary hover:bg-white/10 hover:border-white/30 focus:ring-text-secondary',
+    'glass glass-hover text-text-primary focus:ring-text-secondary active:scale-[0.98]',
+  outline:
+    'border border-accent/30 bg-transparent text-accent hover:bg-accent/10 hover:border-accent focus:ring-accent active:scale-[0.98] transition-all duration-300',
 }
 
 export default function Button({
@@ -17,9 +19,9 @@ export default function Button({
   ...props
 }) {
   const base =
-    'inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background'
+    'inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-bold uppercase tracking-wider focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background disabled:opacity-50 disabled:cursor-not-allowed'
 
-  const combined = `${base} ${variants[variant]} ${className}`
+  const combined = `${base} ${variants[variant] || variants.primary} ${className}`
 
   if (to) {
     return (
