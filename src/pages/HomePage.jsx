@@ -11,7 +11,7 @@ import HeroAnimatedText from '../components/ui/HeroAnimatedText'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const HERO_H1 = 'SÉCURITÉ • SELF‑DÉFENSE • TACTIQUE'
+const HERO_H1 = 'SÉCURITÉ • SELF‑DÉFENSE • SPORT DE COMBAT'
 
 export default function HomePage() {
   const heroRef = useRef(null)
@@ -140,7 +140,7 @@ export default function HomePage() {
               className="mt-8 text-xl md:text-2xl text-text-secondary font-light max-w-2xl leading-relaxed"
             >
               Maîtrisez votre sécurité avec <span className="text-text-primary font-medium">{global.nom}</span>.
-              Formation professionnelle et coaching d'élite en Île-de-France.
+              Formation professionnelle et coaching en Île-de-France.
             </p>
 
             <div
@@ -188,7 +188,7 @@ export default function HomePage() {
                   <div className="text-xs uppercase tracking-widest font-bold opacity-50">Ans d'expérience</div>
                 </div>
                 <div className="p-6 rounded-2xl glass">
-                  <div className="text-accent font-display text-4xl mb-1">1000+</div>
+                  <div className="text-accent font-display text-4xl mb-1">100+</div>
                   <div className="text-xs uppercase tracking-widest font-bold opacity-50">Élèves formés</div>
                 </div>
               </div>

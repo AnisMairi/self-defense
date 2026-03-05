@@ -29,15 +29,15 @@ export const siteContent = {
       'Formations agréées CNAPS',
     ],
     zones: [
-      'Île-de-France (principal)',
+      'Île-de-France',
       'France (formations sécurité)',
     ],
     valeurs: [
-      'Autorité',
-      'Crédibilité',
-      'Professionnalisme',
-      'Expertise terrain',
-      'Accessibilité humaine',
+      '20+ ans d’expérience',
+      '50+ structures accompagnées',
+      '100+ athlètes formés',
+      'Pratique en conditions réelles',
+      'Accompagnement personnalisé',
       'Conformité & agréments',
     ],
     ton: 'Professionnel, clair, structuré, rassurant.',
@@ -251,7 +251,7 @@ export const siteContent = {
         numeroDeclarationActivite: '11922765592',
       },
       legal: {
-        telephone: 'TODO',
+        telephone: '+33 7 81 74 59 85',
         email: 'gscurit@rocketmail.com',
       },
     },
@@ -269,7 +269,7 @@ export const siteContent = {
       email: 'lcsportsconnexion92@gmail.com',
     },
     gscurit: {
-      telephone: 'TODO',
+      telephone: '+33 7 81 74 59 85',
       email: 'gscurit@rocketmail.com',
     },
     faq: [

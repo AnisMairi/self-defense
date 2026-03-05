@@ -48,7 +48,7 @@ export default function GscuritPage() {
     return () => ctx.revert()
   }, [])
 
-  const zoneIntervention = e.zone ?? 'TODO'
+  const zoneIntervention = e.zone ?? 'France entière'
 
   return (
     <main className="min-w-0 bg-background text-text-primary">
