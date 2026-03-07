@@ -275,7 +275,7 @@ export default function LcFormaProPage() {
             <div className="p-8 rounded-2xl glass group hover:border-accent/30 transition-all">
               <p className="font-display text-xl uppercase tracking-widest text-accent mb-4">Agrément & SIRET</p>
               <p className="text-text-primary font-medium mb-1">SIRET : {e.legal.siret}</p>
-              <p className="text-text-secondary text-sm">Déclaration activité : {e.legal.numeroDeclarationActivite}</p>
+              <p className="text-text-secondary text-sm">Déclaration activité : <span className="whitespace-nowrap">{e.legal.numeroDeclarationActivite}</span></p>
             </div>
           </div>
         </Container>
