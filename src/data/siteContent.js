@@ -184,7 +184,7 @@ export const siteContent = {
         telephone: '+33 7 81 74 59 85',
         email: 'lcformaprosecurite92@gmail.com',
         siret: '884 878 398 00012',
-        numeroDeclarationActivite: '11 92 238 08 92',
+        numeroDeclarationActivite: 'W922017593 11 92 238 08 92',
       },
     },
 
@@ -230,6 +230,8 @@ export const siteContent = {
         role: 'Président / Coach',
         telephone: '+33 7 81 74 59 85',
         email: 'lcsportsconnexion92@gmail.com',
+        siret: '88487839800012',
+        agrement: 'W922017594',
       },
     },
 

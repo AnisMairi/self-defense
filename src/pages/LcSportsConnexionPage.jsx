@@ -225,7 +225,7 @@ export default function LcSportsConnexionPage() {
         aria-labelledby="section-contact"
       >
         <Container>
-          <div className="grid gap-12 md:grid-cols-3">
+          <div className="grid gap-12 md:grid-cols-4">
             <div className="p-8 rounded-2xl glass text-center group transition-all duration-300 hover:border-accent/30">
               <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6 text-accent group-hover:bg-accent group-hover:text-white transition-colors">📱</div>
               <p className="font-display text-xl uppercase tracking-widest text-text-primary mb-2">Téléphone</p>
@@ -244,6 +244,12 @@ export default function LcSportsConnexionPage() {
               <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6 text-accent group-hover:bg-accent group-hover:text-white transition-colors">📋</div>
               <p className="font-display text-xl uppercase tracking-widest text-text-primary mb-2">{e.legal.role}</p>
               <p className="text-text-secondary text-lg">{e.legal.responsable}</p>
+            </div>
+            <div className="p-8 rounded-2xl glass text-center group transition-all duration-300 hover:border-accent/30">
+              <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6 text-accent group-hover:bg-accent group-hover:text-white transition-colors">📄</div>
+              <p className="font-display text-xl uppercase tracking-widest text-text-primary mb-2">Agrément & SIRET</p>
+              <p className="text-text-secondary text-lg">{e.legal.siret}</p>
+              <p className="text-text-secondary text-lg">{e.legal.agrement}</p>
             </div>
           </div>
         </Container>
